@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  @apply bg-graphite-950 text-slate-200 font-body antialiased;
+  background-image:
+    radial-gradient(circle at 20% -10%, rgba(61, 220, 151, 0.08), transparent 40%),
+    radial-gradient(circle at 100% 0%, rgba(94, 194, 255, 0.06), transparent 35%);
+  background-attachment: fixed;
+}
+
+::selection {
+  background: rgba(61, 220, 151, 0.3);
+}
+
+.font-display {
+  letter-spacing: -0.01em;
+}
+
+.data-mono {
+  @apply font-mono tabular-nums;
+}
+
+.panel {
+  @apply bg-graphite-900 border border-graphite-700/60 rounded-xl shadow-panel;
+}
+
+.pulse-dot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+}
+
+.pulse-dot::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  opacity: 0.5;
+  animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.6); opacity: 0.6; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #31415699;
+  border-radius: 999px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse-dot::after {
+    animation: none;
+  }
+}
